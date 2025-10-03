@@ -2,7 +2,7 @@ import java.io.Serializable;
 
 public class Pedidos implements Serializable {
 
-    private static final long serialVersionUID=1234L;
+    private static final long serialVersionUID=5678L;
     private int id,clienteId,cantidad;
     private String producto;
 

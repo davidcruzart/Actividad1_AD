@@ -5,10 +5,11 @@ import java.net.URL;
 public class Entrada {
     public static void main(String[] args) {
         PedidosYa pedidos = new PedidosYa();
-        //pedidos.exportarPedidos("src/resources/pedidos.csv");
-        //pedidos.exportarClientes("src/resources/clientes.csv");
-        //pedidos.escribirObjetoPedidos("src/resources/pedidos.dat");
-       //pedidos.escribirObjetoClientes("src/resources/clientes.dat");
+       //pedidos.exportarPedidos("src/resources/pedidos.csv");
+        /*pedidos.exportarClientes("src/resources/clientes.csv");
+        pedidos.escribirObjetoPedidos("src/resources/pedidos.dat");
+        pedidos.escribirObjetoClientes("src/resources/clientes.dat");*/
         pedidos.leerClienteObj("src/resources/clientes.dat");
+        pedidos.leerPedidosObj("src/resources/pedidos.dat");
     }
 }

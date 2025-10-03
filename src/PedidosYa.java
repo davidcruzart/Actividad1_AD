@@ -59,7 +59,6 @@ public class PedidosYa {
     }
 
     public void escribirObjetoClientes(String path){
-       Scanner lector = new Scanner(System.in);
        File file = new File(path);
        FileOutputStream fos = null;
        ObjectOutputStream oos = null;
@@ -68,9 +67,10 @@ public class PedidosYa {
             fos = new FileOutputStream(file);
             oos = new ObjectOutputStream(fos);
             oos.writeObject(new Clientes(4, "Borja", "borja@gmail.com"));
+            oos.writeObject(new Clientes(4, "Nayara", "nayara@gmail.com"));
         } catch (FileNotFoundException e) {
             System.out.println("El fichero no existe");
-        } catch (IOException e){
+        }catch (IOException e){
             System.out.println("No hay permisos de escritura");
         } finally {
             try {
@@ -82,16 +82,15 @@ public class PedidosYa {
     }
 
     public void escribirObjetoPedidos(String path){
-        Scanner lector = new Scanner(System.in);
         File file = new File(path);
         FileOutputStream fos = null;
         ObjectOutputStream oos = null;
-
 
         try {
             fos = new FileOutputStream(file);
             oos = new ObjectOutputStream(fos);
             oos.writeObject(new Pedidos(4, 4, "Balatro", 1));
+            oos.writeObject(new Pedidos(3, 1, "AgeOfEmpires II", 3));
         } catch (FileNotFoundException e) {
             System.out.println("El fichero no existe");
         } catch (IOException e){
@@ -112,7 +111,7 @@ public class PedidosYa {
         try {
             fis = new FileInputStream(file);
             ois = new ObjectInputStream(fis);
-            Clientes cliente = (Clientes) ois.readObject();
+            Clientes cliente = null;
 
             while ((cliente = (Clientes) ois.readObject()) != null){
                 System.out.println(cliente.getId());
@@ -120,8 +119,43 @@ public class PedidosYa {
                 System.out.println(cliente.getEmail());
             }
 
+        }catch (FileNotFoundException e) {
+            System.out.println("Error, el fichero no existe");;
+        }catch(EOFException e){
+            System.out.println("Fin de fichero");
+        }catch (IOException e) {
+            System.out.println("No hay permisos de escritura");
+        }catch (ClassNotFoundException | ClassCastException e) {
+            System.out.println("Error clase de lectura");
+        } finally {
+            try {
+                ois.close();
+            } catch (IOException | NullPointerException e) {
+                System.out.println("Error en el cerrado del fichero");
+            }
+        }
+    }
+    public void leerPedidosObj(String path){
+        File file = new File(path);
+        FileInputStream fis = null;
+        ObjectInputStream ois = null;
+
+        try {
+            fis = new FileInputStream(file);
+            ois = new ObjectInputStream(fis);
+            Pedidos pedido = null;
+
+            while ((pedido = (Pedidos) ois.readObject()) != null){
+                System.out.println(pedido.getId());
+                System.out.println(pedido.getClienteId());
+                System.out.println(pedido.getCantidad());
+                System.out.println(pedido.getProducto());
+            }
+
         } catch (FileNotFoundException e) {
             System.out.println("Error, el fichero no existe");;
+        }catch(EOFException e){
+            System.out.println("Fin de fichero");
         }catch (IOException e) {
             System.out.println("No hay permisos de escritura");
         } catch (ClassNotFoundException | ClassCastException e) {

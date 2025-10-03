@@ -20,14 +20,15 @@ public class PedidosYa {
        //añado el try catch y sus excepciones,
        // OJO! TRUQUI:
        // Seleccionas el codigo, te pones encima sale la opcion Surround alli metes try catch y te lo envuelve
+
        try {
-           printWriter = new PrintWriter(new FileWriter(file, true));
+           printWriter = new PrintWriter(new FileWriter(file, true)); //false se sobreescibe
            printWriter.println("id, nombre, email");
            for (Clientes cliente : listaClientes){
                printWriter.println(cliente);
            }
        } catch (IOException e) {
-           throw new RuntimeException(e);
+           System.out.println("Error entrada fichero");;
        }finally{
            printWriter.close();
        }
@@ -112,6 +113,13 @@ public class PedidosYa {
             fis = new FileInputStream(file);
             ois = new ObjectInputStream(fis);
             Clientes cliente = (Clientes) ois.readObject();
+
+            while ((cliente = (Clientes) ois.readObject()) != null){
+                System.out.println(cliente.getId());
+                System.out.println(cliente.getNombre());
+                System.out.println(cliente.getEmail());
+            }
+
         } catch (FileNotFoundException e) {
             System.out.println("Error, el fichero no existe");;
         }catch (IOException e) {

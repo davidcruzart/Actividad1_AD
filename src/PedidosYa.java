@@ -1,3 +1,7 @@
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,6 +15,27 @@ public class PedidosYa {
        listaClientes.add(new Clientes(1,"Xavi","xavi@email.com"));
        listaClientes.add(new Clientes(2,"Unai","unai@email.com"));
        listaClientes.add(new Clientes(3,"David", "david@email.com"));
+
+       //Añado el File - Xavi.
+
+       File file = new File(path);
+       PrintWriter printWriter = null;
+
+       //añado el try catch y sus excepciones,
+       // OJO! TRUQUI:
+       // Seleccionas el codigo, te pones encima sale la opcion Surround alli metes try catch y te lo envuelve
+       try {
+           printWriter = new PrintWriter(new FileWriter(file, true));
+           printWriter.println("id, nombre, email");
+           for (Clientes cliente : listaClientes){
+               printWriter.println(cliente);
+           }
+       } catch (IOException e) {
+           throw new RuntimeException(e);
+       }finally{
+           printWriter.close();
+       }
+
    }
     public static void exportarPedidos(String path){
         List <Pedidos>listaPedidos = new ArrayList<>();

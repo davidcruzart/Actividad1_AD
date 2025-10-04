@@ -20,7 +20,11 @@ public class PedidosYa {
        //añado el try catch y sus excepciones,
        // OJO! TRUQUI:
        // Seleccionas el codigo, te pones encima sale la opcion Surround alli metes try catch y te lo envuelve
-
+       File parentDir = file.getParentFile();
+       // Crear directorio si no existe
+       if (parentDir != null && !parentDir.exists()) {
+           parentDir.mkdirs();
+       }
        try {
            printWriter = new PrintWriter(new FileWriter(file, true)); //false se sobreescibe
            printWriter.println("id, nombre, email");
@@ -30,7 +34,8 @@ public class PedidosYa {
        } catch (IOException e) {
            System.out.println("Error entrada fichero");;
        }finally{
-           printWriter.close();
+           if (printWriter != null){
+            printWriter.close(); }
        }
 
    }

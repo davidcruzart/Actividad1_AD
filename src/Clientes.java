@@ -2,16 +2,17 @@ import java.io.Serializable;
 
 public class Clientes implements Serializable {
 
-    private static final long serialVersionUID=1234L;
+    private static final long serialVersionUID = 1234L;
     private int id;
-    private String nombre,email;
+    private String nombre, email;
 
-    public Clientes(int id, String nombre, String email){
+    public Clientes(int id, String nombre, String email) {
         this.id = id;
         this.nombre = nombre;
         this.email = email;
     }
-    public Clientes(){
+
+    public Clientes() {
 
     }
 

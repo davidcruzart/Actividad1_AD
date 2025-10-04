@@ -2,17 +2,18 @@ import java.io.Serializable;
 
 public class Pedidos implements Serializable {
 
-    private static final long serialVersionUID=5678L;
-    private int id,clienteId,cantidad;
+    private static final long serialVersionUID = 5678L;
+    private int id, clienteId, cantidad;
     private String producto;
 
-    public Pedidos(int id, int clienteId, String producto, int cantidad){
-        this.id=id;
-        this.clienteId=clienteId;
-        this.producto=producto;
-        this.cantidad=cantidad;
+    public Pedidos(int id, int clienteId, String producto, int cantidad) {
+        this.id = id;
+        this.clienteId = clienteId;
+        this.producto = producto;
+        this.cantidad = cantidad;
     }
-    public Pedidos(){
+
+    public Pedidos() {
     }
 
     public int getId() {
